@@ -434,6 +434,174 @@ a {
   padding: 3rem;
 }
 
+/* ===========================
+   PROFILE HERO
+   =========================== */
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 0;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.profile-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.profile-link {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/* ===========================
+   TIME RANGE TABS
+   =========================== */
+
+.time-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.time-tabs-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 1.5rem;
+}
+
+.time-tab {
+  background: none;
+  border: 1px solid var(--border);
+  border-right: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.time-tab:last-child {
+  border-right: 1px solid var(--border);
+}
+
+.time-tab:hover {
+  color: var(--text);
+  border-color: var(--text);
+  z-index: 1;
+}
+
+.time-tab.active {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  z-index: 1;
+}
+
+/* ===========================
+   STATS GRID
+   =========================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+
+.stat-card {
+  background: var(--bg);
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-value.accent {
+  color: var(--accent);
+}
+
+.stat-sub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===========================
+   RECENTLY PLAYED
+   =========================== */
+
+.recent-time {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
 /* --- Module Label --- */
 .module-label {
   font-family: var(--font-mono);

@@ -30,7 +30,7 @@ async function spotifyFetch(endpoint, params = {}) {
   return res.json();
 }
 
-// User profile
+// User profile (requires user-read-private for country + product)
 function getUserProfile() {
   return spotifyFetch('/me');
 }
@@ -43,12 +43,6 @@ function getTopTracks(time_range = 'medium_term', limit = 50) {
 // Top artists
 function getTopArtists(time_range = 'medium_term', limit = 50) {
   return spotifyFetch('/me/top/artists', { time_range, limit });
-}
-
-// Audio features for up to 100 track IDs
-function getAudioFeatures(trackIds) {
-  if (!trackIds || trackIds.length === 0) return Promise.resolve({ audio_features: [] });
-  return spotifyFetch('/audio-features', { ids: trackIds.slice(0, 100).join(',') });
 }
 
 // Recently played
@@ -84,4 +78,29 @@ function avgProperty(arr, key) {
   const valid = arr.filter(x => x && typeof x[key] === 'number');
   if (!valid.length) return 0;
   return valid.reduce((sum, x) => sum + x[key], 0) / valid.length;
+}
+
+// Convert ISO country code to flag emoji ("AR" → "🇦🇷")
+function countryToFlag(code) {
+  if (!code || code.length !== 2) return '';
+  return code.toUpperCase().replace(/./g, char =>
+    String.fromCodePoint(127397 + char.charCodeAt(0))
+  );
+}
+
+// Human-readable "time ago"
+function timeAgo(dateStr) {
+  const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000);
+  if (diff < 60) return 'just now';
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// Format large numbers: 1200000 → "1.2M", 45000 → "45K"
+function formatNumber(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return String(n);
 }

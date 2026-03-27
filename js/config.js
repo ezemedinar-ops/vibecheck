@@ -14,6 +14,6 @@ const CONFIG = {
   // Para desarrollo local, comentá la línea de arriba y descomentá esta:
   // REDIRECT_URI: 'http://localhost:3000/callback.html',
 
-  SCOPES: 'user-top-read user-read-recently-played',
+  SCOPES: 'user-top-read user-read-recently-played user-read-private',
   AUTH_ENDPOINT: 'https://accounts.spotify.com/authorize',
 };
