@@ -9,7 +9,8 @@ const DATA = {
   long_term:   { tracks: [], artists: [] },
 };
 
-let currentRange = 'medium_term';
+let currentTrackRange  = 'medium_term';
+let currentArtistRange = 'medium_term';
 
 (async function init() {
   if (!isLoggedIn()) {
@@ -20,7 +21,6 @@ let currentRange = 'medium_term';
   setupThemeToggle();
 
   try {
-    // Fetch all 3 time ranges + profile + recently played in parallel
     const [
       profile,
       shortTracks, shortArtists,
@@ -40,9 +40,13 @@ let currentRange = 'medium_term';
     DATA.long_term   = { tracks: longTracks.items   || [], artists: longArtists.items   || [] };
 
     renderProfileHero(profile);
-    setupTimeRangeTabs();
-    renderForTimeRange('medium_term');
+    setupMiniTabs();
+    renderTracks('medium_term');
+    renderArtists('medium_term');
+    renderHipsterMeter(DATA.medium_term.artists);
+    renderListeningStats(DATA.medium_term.tracks, DATA.medium_term.artists);
     renderRecentlyPlayed(recentData.items || []);
+    renderReceipt(DATA.medium_term.tracks.slice(0, 15));
 
     document.getElementById('loading').classList.add('hidden');
     document.getElementById('dashboard').classList.remove('hidden');
@@ -122,51 +126,46 @@ function renderProfileHero(profile) {
 
 
 // ===========================
-// Time Range Tabs
+// Mini Tabs (independent per column)
 // ===========================
 
-function setupTimeRangeTabs() {
-  document.querySelectorAll('.time-tab').forEach(btn => {
+function setupMiniTabs() {
+  document.getElementById('track-tabs').querySelectorAll('.mini-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       const range = btn.dataset.range;
-      if (range === currentRange) return;
-      currentRange = range;
-      document.querySelectorAll('.time-tab').forEach(b => b.classList.remove('active'));
+      if (range === currentTrackRange) return;
+      currentTrackRange = range;
+      document.getElementById('track-tabs').querySelectorAll('.mini-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderForTimeRange(range);
+      renderTracks(range);
+      renderListeningStats(DATA[range].tracks, DATA[currentArtistRange].artists);
+      renderReceipt(DATA[range].tracks.slice(0, 15));
     });
   });
-  // Set initial active tab
-  document.querySelector(`.time-tab[data-range="${currentRange}"]`)?.classList.add('active');
-}
 
-function renderForTimeRange(range) {
-  const { tracks, artists } = DATA[range];
-  clearLists();
-  renderTrinity(tracks.slice(0, 20), artists.slice(0, 20), artists);
-  renderHipsterMeter(artists);
-  renderListeningStats(tracks, artists);
-  renderReceipt(tracks.slice(0, 15));
-}
-
-function clearLists() {
-  ['top-tracks-list', 'top-artists-list', 'genres-list'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = '';
+  document.getElementById('artist-tabs').querySelectorAll('.mini-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const range = btn.dataset.range;
+      if (range === currentArtistRange) return;
+      currentArtistRange = range;
+      document.getElementById('artist-tabs').querySelectorAll('.mini-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderArtists(range);
+      renderHipsterMeter(DATA[range].artists);
+      renderListeningStats(DATA[currentTrackRange].tracks, DATA[range].artists);
+    });
   });
 }
 
 
 // ===========================
-// Module 1 — The Holy Trinity
+// Module 1 — Tracks & Artists
 // ===========================
 
-function renderTrinity(tracks, artists, allArtists) {
-  const tracksList  = document.getElementById('top-tracks-list');
-  const artistsList = document.getElementById('top-artists-list');
-  const genresList  = document.getElementById('genres-list');
-
-  tracks.forEach((track, i) => {
+function renderTracks(range) {
+  const list = document.getElementById('top-tracks-list');
+  list.innerHTML = '';
+  DATA[range].tracks.slice(0, 20).forEach((track, i) => {
     const li = document.createElement('li');
     li.innerHTML = `
       <span class="item-rank">${String(i + 1).padStart(2, '0')}</span>
@@ -178,10 +177,14 @@ function renderTrinity(tracks, artists, allArtists) {
         <div class="item-sub">${escHtml(track.artists?.[0]?.name || '')}</div>
       </div>
     `;
-    tracksList.appendChild(li);
+    list.appendChild(li);
   });
+}
 
-  artists.forEach((artist, i) => {
+function renderArtists(range) {
+  const list = document.getElementById('top-artists-list');
+  list.innerHTML = '';
+  DATA[range].artists.slice(0, 20).forEach((artist, i) => {
     const li = document.createElement('li');
     li.innerHTML = `
       <span class="item-rank">${String(i + 1).padStart(2, '0')}</span>
@@ -193,24 +196,8 @@ function renderTrinity(tracks, artists, allArtists) {
         <div class="item-sub">${escHtml((artist.genres || []).slice(0, 2).join(', '))}</div>
       </div>
     `;
-    artistsList.appendChild(li);
+    list.appendChild(li);
   });
-
-  const genres = extractGenres(allArtists, 20);
-  if (!genres.length) {
-    const li = document.createElement('li');
-    li.innerHTML = `<div class="item-info"><div class="item-sub" style="font-style:italic">No genre data available from Spotify.</div></div>`;
-    genresList.appendChild(li);
-  } else {
-    genres.forEach((genre, i) => {
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span class="item-rank">${String(i + 1).padStart(2, '0')}</span>
-        <div class="item-info"><div class="genre-tag">${escHtml(genre)}</div></div>
-      `;
-      genresList.appendChild(li);
-    });
-  }
 }
 
 

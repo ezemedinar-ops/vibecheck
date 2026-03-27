@@ -630,6 +630,10 @@ a {
   border: 1px solid var(--border);
 }
 
+.trinity-grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
 .trinity-col {
   padding: 2rem;
   border-right: 1px solid var(--border);
@@ -639,6 +643,14 @@ a {
   border-right: none;
 }
 
+.trinity-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
 .trinity-col-title {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -646,7 +658,45 @@ a {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+}
+
+/* Mini tabs inside each column */
+.mini-tabs {
+  display: flex;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.mini-tab {
+  background: none;
+  border: 1px solid var(--border);
+  border-right: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+
+.mini-tab:last-child {
+  border-right: 1px solid var(--border);
+}
+
+.mini-tab:hover {
+  color: var(--text);
+  border-color: var(--text);
+  z-index: 1;
+}
+
+.mini-tab.active {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  z-index: 1;
 }
 
 .trinity-list li {
@@ -950,7 +1000,8 @@ a {
     padding: 1.25rem 2rem;
   }
 
-  .trinity-grid {
+  .trinity-grid,
+  .trinity-grid-2 {
     grid-template-columns: 1fr;
   }
 

@@ -49,30 +49,35 @@
         </div>
       </section>
 
-      <!-- TIME RANGE TABS -->
-      <div class="time-tabs">
-        <span class="time-tabs-label">Showing:</span>
-        <button class="time-tab" data-range="short_term">4 Weeks</button>
-        <button class="time-tab" data-range="medium_term">6 Months</button>
-        <button class="time-tab" data-range="long_term">All Time</button>
-      </div>
-
-      <!-- MODULE 1 — THE HOLY TRINITY -->
+      <!-- MODULE 1 — TOP TRACKS + TOP ARTISTS -->
       <section class="module-trinity">
-        <div class="module-label">01 / The Holy Trinity</div>
-        <div class="trinity-grid">
+        <div class="module-label">01 / Top Tracks &amp; Artists</div>
+        <div class="trinity-grid trinity-grid-2">
+
           <div class="trinity-col">
-            <div class="trinity-col-title">Top Tracks</div>
+            <div class="trinity-col-header">
+              <div class="trinity-col-title">Top Tracks</div>
+              <div class="mini-tabs" id="track-tabs">
+                <button class="mini-tab" data-range="short_term">4W</button>
+                <button class="mini-tab active" data-range="medium_term">6M</button>
+                <button class="mini-tab" data-range="long_term">ALL</button>
+              </div>
+            </div>
             <ol class="trinity-list" id="top-tracks-list"></ol>
           </div>
+
           <div class="trinity-col">
-            <div class="trinity-col-title">Top Artists</div>
+            <div class="trinity-col-header">
+              <div class="trinity-col-title">Top Artists</div>
+              <div class="mini-tabs" id="artist-tabs">
+                <button class="mini-tab" data-range="short_term">4W</button>
+                <button class="mini-tab active" data-range="medium_term">6M</button>
+                <button class="mini-tab" data-range="long_term">ALL</button>
+              </div>
+            </div>
             <ol class="trinity-list" id="top-artists-list"></ol>
           </div>
-          <div class="trinity-col">
-            <div class="trinity-col-title">Your Genres</div>
-            <ol class="trinity-list" id="genres-list"></ol>
-          </div>
+
         </div>
       </section>
 
