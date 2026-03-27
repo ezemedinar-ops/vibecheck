@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeCheck — Connecting...</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="callback-page">
+    <div class="callback-title">Connecting...</div>
+    <div class="callback-subtitle">Authenticating with Spotify</div>
+    <div class="loading-wave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Apply saved theme
+    document.body.setAttribute('data-theme', localStorage.getItem('vc_theme') || 'dark');
+    // Handle OAuth callback
+    handleCallback();
+  </script>
+</body>
+</html>

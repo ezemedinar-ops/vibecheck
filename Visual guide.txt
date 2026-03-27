@@ -1,0 +1,13 @@
+Visual Guide - "VibeCheck Editorial"
+
+Concepto General: Diseño UI/UX web para una aplicación de estadísticas musicales, inspirado en el diseño editorial de revistas de vanguardia (tipo Dazed o i-D) y el brutalismo tipográfico suizo. La estética debe sentirse curada, íntima y como una galería de arte moderno.
+
+Composición y Layout: Estructura asimétrica basada en una cuadrícula (grid) estricta. Uso masivo de espacio en blanco (o espacio negativo oscuro). Grandes bloques de texto intercalados con fotografías de artistas. Las estadísticas no parecen gráficos de Excel, sino elementos artísticos (ej. círculos concéntricos finos, barras asimétricas).
+
+Tipografía: Contraste extremo. Titulares gigantes y expresivos usando una fuente Serif elegante y muy fina (tipo Playfair Display o GT Super). Para los datos numéricos y metadatos (BPM, duración), una fuente Sans-Serif monoespaciada o muy geométrica y minúscula (tipo Space Grotesk o Helvetica Neue Extended).
+
+Paleta de Colores: Monocromática de alto contraste. Fondo principal crudo (Off-white #F5F5F0) o gris grafito oscuro (#181818). Textos en negro tinta (#0A0A0A) o blanco puro. Un solo color de acento vibrante y ácido (ej. Rojo Carmesí #E63946 o Lima Neón #CCFF00) usado esporádicamente para resaltar el "Hipster Score" o el botón de compartir.
+
+Tratamiento de Imagen: Las portadas de los álbumes y fotos de artistas no tienen bordes redondeados. Se presentan como recortes editoriales ásperos, algunas en blanco y negro de alto contraste, o con un sutil efecto de mediotono (halftone/print effect) que simula tinta sobre papel impreso.
+
+Vibe/Sentimiento: Sofisticado, nostálgico, pretencioso (de forma divertida), íntimo. El usuario debe sentir que está viendo la portada de su propio zine musical. Formato vertical pensado para Instagram Stories (9:16).

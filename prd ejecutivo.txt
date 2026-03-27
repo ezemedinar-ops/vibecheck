@@ -1,0 +1,18 @@
+PRD: VibeCheck - Tu ADN Musical
+
+1. Resumen Ejecutivo
+VibeCheck es una plataforma web donde los usuarios pueden visualizar sus habitos de escucha de Spotify de forma
+interactiva. Ofrece datos en tiempo real y analisis tecnicos (BPM, energia, positividad) que la aplicacion oficial no
+muestra de forma directa.
+2. Caracteristicas Principales y Uso de la API
+- The Holy Trinity: Top 20 de canciones, artistas y generos (GET /me/top/{type}).
+- Audio DNA: Grafico de radar con niveles de Bailabilidad, Energia y Acustica (GET /audio-features).
+- Hipster Meter: Porcentaje de originalidad basado en la popularidad (GET /me/top/artists).
+- Mood Tracker: Analisis del sentimiento de las ultimas 50 canciones (GET /me/player/recently-played).
+- The Receipt: Generacion de un ticket de compra con las canciones mas escuchadas (GET /me/top/tracks).
+3. Flujo del Usuario
+1. Landing: Propuesta de valor clara.
+2. Auth: OAuth 2.0 (Scopes: user-top-read, user-read-recently-played).
+3. Loading: Animacion de ondas.
+4. Dashboard: Visualizacion de stats.
+5. Share: Exportacion a redes sociales.

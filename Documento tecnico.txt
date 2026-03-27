@@ -1,0 +1,13 @@
+PRD VibeCheck - Documento Tecnico Completo
+
+1. Introduccion y Vision
+Este documento detalla la arquitectura de datos para la aplicacion VibeCheck. El objetivo es utilizar la API de Spotify
+para generar graficos de ADN musical y metrics personalizadas para el usuario.
+2. Matriz de Endpoints y Mapeo de Datos (Tabla de Excel)
+
+Funcionalidad Endpoint Spotify Scopes Necesarios Datos Clave Logica de Negocio
+Top Tracks /me/top/tracks user-top-read name, images, duration Filtrar por time_range
+Audio DNA /audio-features user-top-read danceability, energy, valence Promedio de los 50 tracks
+Hipster Score /me/top/artists user-top-read popularity 100 - popularidad
+Recently Played /me/player/recently-played user-read-recently-played played_at, track.name Analisis de mood temporal
+The Receipt /me/top/tracks user-top-read artists, duration_ms Formato de ticket de compra

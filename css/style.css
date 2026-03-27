@@ -1,0 +1,835 @@
+/* ===========================
+   VIBECHECK — Design System
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --bg: #181818;
+  --bg-secondary: #222222;
+  --bg-tertiary: #2a2a2a;
+  --text: #FFFFFF;
+  --text-muted: #888888;
+  --accent: #CCFF00;
+  --accent-dim: rgba(204, 255, 0, 0.12);
+  --border: #333333;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  --transition: 0.2s ease;
+}
+
+[data-theme="light"] {
+  --bg: #F5F5F0;
+  --bg-secondary: #EBEBEB;
+  --bg-tertiary: #E0E0DA;
+  --text: #0A0A0A;
+  --text-muted: #666666;
+  --accent: #E63946;
+  --accent-dim: rgba(230, 57, 70, 0.1);
+  --border: #CCCCCC;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===========================
+   LANDING PAGE
+   =========================== */
+
+.landing {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* --- Landing Nav --- */
+.landing-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* --- Landing Hero --- */
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.hero-title .accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 4rem;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #000000;
+}
+
+.btn-primary:hover {
+  background: var(--text);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+/* --- Spotify Logo in button --- */
+.spotify-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* --- Features preview --- */
+.features-strip {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.feature-item {
+  flex: 1;
+  min-width: 160px;
+  padding: 1.5rem 2rem;
+  border-right: 1px solid var(--border);
+}
+
+.feature-item:last-child {
+  border-right: none;
+}
+
+.feature-number {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.feature-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- Error message on landing --- */
+.error-msg {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* ===========================
+   CALLBACK PAGE
+   =========================== */
+
+.callback-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.callback-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.callback-subtitle {
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ===========================
+   LOADING OVERLAY
+   =========================== */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-logo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.loading-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.loading-wave {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 32px;
+}
+
+.loading-wave span {
+  display: block;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 0;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.loading-wave span:nth-child(1) { animation-delay: 0s; }
+.loading-wave span:nth-child(2) { animation-delay: 0.1s; }
+.loading-wave span:nth-child(3) { animation-delay: 0.2s; }
+.loading-wave span:nth-child(4) { animation-delay: 0.3s; }
+.loading-wave span:nth-child(5) { animation-delay: 0.4s; }
+.loading-wave span:nth-child(6) { animation-delay: 0.3s; }
+.loading-wave span:nth-child(7) { animation-delay: 0.2s; }
+.loading-wave span:nth-child(8) { animation-delay: 0.1s; }
+
+@keyframes wave {
+  0%, 100% { height: 4px; }
+  50% { height: 28px; }
+}
+
+/* ===========================
+   DASHBOARD LAYOUT
+   =========================== */
+
+.dashboard {
+  min-height: 100vh;
+}
+
+.dashboard.hidden {
+  display: none;
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+}
+
+.header-logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.header-username {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --- Dashboard Main --- */
+.dashboard-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+/* --- Module Label --- */
+.module-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===========================
+   MODULE 1 — THE HOLY TRINITY
+   =========================== */
+
+.module-trinity {
+  margin-bottom: 4rem;
+}
+
+.trinity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+
+.trinity-col {
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+}
+
+.trinity-col:last-child {
+  border-right: none;
+}
+
+.trinity-col-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.trinity-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.trinity-list li:last-child {
+  border-bottom: none;
+}
+
+.item-rank {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  width: 1.5rem;
+  flex-shrink: 0;
+}
+
+.item-img {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.item-sub {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.genre-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.2rem 0;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+/* ===========================
+   MODULE ROW (2 columns)
+   =========================== */
+
+.module-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+
+.module-row-equal {
+  grid-template-columns: 1fr 1fr;
+}
+
+.module-cell {
+  padding: 2.5rem;
+  border-right: 1px solid var(--border);
+}
+
+.module-cell:last-child {
+  border-right: none;
+}
+
+/* ===========================
+   MODULE 2 — AUDIO DNA
+   =========================== */
+
+.dna-chart-wrap {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   MODULE 3 — HIPSTER METER
+   =========================== */
+
+.hipster-number {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 10vw, 9rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.hipster-unit {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.hipster-bar-wrap {
+  height: 4px;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.hipster-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 1s ease;
+}
+
+.hipster-desc {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ===========================
+   MODULE 4 — MOOD TRACKER
+   =========================== */
+
+.mood-visual {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mood-emoji-large {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.mood-info {
+  flex: 1;
+}
+
+.mood-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.mood-valence {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mood-bar-wrap {
+  height: 2px;
+  background: var(--border);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.mood-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 1s ease;
+}
+
+.mood-desc {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ===========================
+   MODULE 5 — THE RECEIPT
+   =========================== */
+
+.receipt-paper {
+  background: var(--bg-secondary);
+  padding: 2rem 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: var(--text);
+  border-top: 4px dashed var(--border);
+  border-bottom: 4px dashed var(--border);
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.receipt-store-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.receipt-tagline {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 0.75rem 0;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.receipt-track-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.receipt-duration {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   UTILITIES
+   =========================== */
+
+.hidden {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 1024px) {
+  .landing-nav,
+  .landing-hero {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .dashboard-main {
+    padding: 2rem;
+  }
+
+  .dashboard-header {
+    padding: 1.25rem 2rem;
+  }
+
+  .trinity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trinity-col {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trinity-col:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-hero {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 15vw, 6rem);
+  }
+
+  .module-row,
+  .module-row-equal {
+    grid-template-columns: 1fr;
+  }
+
+  .module-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .module-cell:last-child {
+    border-bottom: none;
+  }
+
+  .features-strip {
+    flex-direction: column;
+  }
+
+  .feature-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-username {
+    display: none;
+  }
+}

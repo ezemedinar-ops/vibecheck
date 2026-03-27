@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeCheck — Your Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js for Audio DNA radar chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading">
+    <div class="loading-logo">VibeCheck</div>
+    <div class="loading-wave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="loading-text" id="loading-text">Reading your soul...</div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard hidden" id="dashboard">
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-logo">VibeCheck</div>
+
+      <div class="header-user">
+        <img class="header-avatar" id="user-avatar" src="" alt="User avatar">
+        <span class="header-username" id="user-name"></span>
+      </div>
+
+      <div class="header-controls">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☀</button>
+        <button class="btn btn-ghost btn-sm" id="logout-btn">Exit</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+      <!-- MODULE 1 — THE HOLY TRINITY -->
+      <section class="module-trinity">
+        <div class="module-label">01 / The Holy Trinity</div>
+        <div class="trinity-grid">
+
+          <div class="trinity-col">
+            <div class="trinity-col-title">Top Tracks</div>
+            <ol class="trinity-list" id="top-tracks-list"></ol>
+          </div>
+
+          <div class="trinity-col">
+            <div class="trinity-col-title">Top Artists</div>
+            <ol class="trinity-list" id="top-artists-list"></ol>
+          </div>
+
+          <div class="trinity-col">
+            <div class="trinity-col-title">Your Genres</div>
+            <ol class="trinity-list" id="genres-list"></ol>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MODULE 2 + 3 — AUDIO DNA + HIPSTER METER -->
+      <div class="module-row">
+
+        <div class="module-cell">
+          <div class="module-label">02 / Audio DNA</div>
+          <div class="dna-chart-wrap" id="dna-wrap">
+            <canvas id="dna-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="module-cell">
+          <div class="module-label">03 / Hipster Meter</div>
+          <div class="hipster-number" id="hipster-value">--</div>
+          <div class="hipster-unit">% underground</div>
+          <div class="hipster-bar-wrap">
+            <div class="hipster-bar-fill" id="hipster-bar-fill" style="width:0%"></div>
+          </div>
+          <p class="hipster-desc" id="hipster-desc"></p>
+        </div>
+
+      </div>
+
+      <!-- MODULE 4 + 5 — MOOD TRACKER + THE RECEIPT -->
+      <div class="module-row module-row-equal">
+
+        <div class="module-cell">
+          <div class="module-label">04 / Mood Tracker</div>
+          <div class="mood-visual">
+            <div class="mood-emoji-large" id="mood-emoji">—</div>
+            <div class="mood-info">
+              <div class="mood-title" id="mood-title">—</div>
+              <div class="mood-valence" id="mood-valence">—</div>
+            </div>
+          </div>
+          <div class="mood-bar-wrap">
+            <div class="mood-bar-fill" id="mood-bar-fill" style="width:0%"></div>
+          </div>
+          <p class="mood-desc" id="mood-desc"></p>
+        </div>
+
+        <div class="module-cell">
+          <div class="module-label">05 / The Receipt</div>
+          <div class="receipt-paper" id="receipt-content"></div>
+        </div>
+
+      </div>
+
+    </main>
+  </div><!-- .dashboard -->
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    document.getElementById('logout-btn').addEventListener('click', logout);
+  </script>
+
+</body>
+</html>
