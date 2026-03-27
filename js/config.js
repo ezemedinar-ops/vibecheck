@@ -6,7 +6,7 @@
 // 3. El CLIENT_SECRET va como variable de entorno en Vercel: SPOTIFY_CLIENT_SECRET
 
 const CONFIG = {
-  CLIENT_ID: 'TU_CLIENT_ID_AQUI',
+  CLIENT_ID: '5c65190595964279b3ae22babc38b194',
 
   // Para producción (Vercel/Netlify):
   REDIRECT_URI: 'https://vibecheck-blue.vercel.app/callback.html',
