@@ -21,18 +21,24 @@ let currentArtistRange = 'medium_term';
   setupThemeToggle();
 
   try {
+    // Fetch critical data first
+    const profile = await getUserProfile();
+
+    // Fetch all ranges — each call is independent, failures return empty arrays
+    const empty = { items: [] };
     const [
-      profile,
       shortTracks, shortArtists,
       mediumTracks, mediumArtists,
       longTracks, longArtists,
       recentData,
     ] = await Promise.all([
-      getUserProfile(),
-      getTopTracks('short_term', 50),  getTopArtists('short_term', 50),
-      getTopTracks('medium_term', 50), getTopArtists('medium_term', 50),
-      getTopTracks('long_term', 50),   getTopArtists('long_term', 50),
-      getRecentlyPlayed(20).catch(() => ({ items: [] })),
+      getTopTracks('short_term',  50).catch(() => empty),
+      getTopArtists('short_term', 50).catch(() => empty),
+      getTopTracks('medium_term',  50).catch(() => empty),
+      getTopArtists('medium_term', 50).catch(() => empty),
+      getTopTracks('long_term',  50).catch(() => empty),
+      getTopArtists('long_term', 50).catch(() => empty),
+      getRecentlyPlayed(20).catch(() => empty),
     ]);
 
     DATA.short_term  = { tracks: shortTracks.items  || [], artists: shortArtists.items  || [] };
@@ -53,8 +59,9 @@ let currentArtistRange = 'medium_term';
 
   } catch (e) {
     console.error('Dashboard error:', e);
-    document.getElementById('loading-text').textContent = 'Error loading data. Try again.';
-    setTimeout(() => { window.location.href = '/index.html?error=load_failed'; }, 2500);
+    // If profile fetch failed, token is likely expired/invalid — force re-login
+    document.getElementById('loading-text').textContent = 'Session expired. Redirecting...';
+    setTimeout(() => { logout(); }, 1500);
   }
 })();
 
