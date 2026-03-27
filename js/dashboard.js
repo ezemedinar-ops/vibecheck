@@ -11,27 +11,33 @@
   setupThemeToggle();
 
   try {
-    // Fetch all data in parallel
+    // Fetch critical data in parallel
     const [profile, topTracksData, topArtistsData, recentData] = await Promise.all([
       getUserProfile(),
       getTopTracks('medium_term', 50),
       getTopArtists('medium_term', 50),
-      getRecentlyPlayed(50),
+      getRecentlyPlayed(50).catch(() => ({ items: [] })),
     ]);
 
     const topTracks = topTracksData.items || [];
     const topArtists = topArtistsData.items || [];
     const recentItems = recentData.items || [];
 
-    // Fetch audio features for top tracks (for Audio DNA + Mood)
-    const trackIds = topTracks.map(t => t.id);
-    const [audioFeaturesData, recentFeaturesData] = await Promise.all([
-      getAudioFeatures(trackIds),
-      getAudioFeatures(recentItems.map(i => i.track?.id).filter(Boolean)),
-    ]);
-
-    const audioFeatures = (audioFeaturesData.audio_features || []).filter(Boolean);
-    const recentFeatures = (recentFeaturesData.audio_features || []).filter(Boolean);
+    // Audio features are optional — Spotify restricts this endpoint for some apps
+    let audioFeatures = [];
+    let recentFeatures = [];
+    try {
+      const trackIds = topTracks.map(t => t.id);
+      const recentIds = recentItems.map(i => i.track?.id).filter(Boolean);
+      const [audioFeaturesData, recentFeaturesData] = await Promise.all([
+        getAudioFeatures(trackIds),
+        recentIds.length ? getAudioFeatures(recentIds) : Promise.resolve({ audio_features: [] }),
+      ]);
+      audioFeatures = (audioFeaturesData.audio_features || []).filter(Boolean);
+      recentFeatures = (recentFeaturesData.audio_features || []).filter(Boolean);
+    } catch (e) {
+      console.warn('Audio features not available:', e.message);
+    }
 
     // Render user info
     renderUserInfo(profile);
