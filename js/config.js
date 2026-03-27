@@ -9,7 +9,7 @@ const CONFIG = {
   CLIENT_ID: 'TU_CLIENT_ID_AQUI',
 
   // Para producción (Vercel/Netlify):
-  REDIRECT_URI: 'https://TU-DOMINIO.vercel.app/callback.html',
+  REDIRECT_URI: 'https://vibecheck-blue.vercel.app/callback.html',
 
   // Para desarrollo local, comentá la línea de arriba y descomentá esta:
   // REDIRECT_URI: 'http://localhost:3000/callback.html',
